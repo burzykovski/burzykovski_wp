@@ -8,6 +8,10 @@ module.exports = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ["babel-loader"]
+      },
+      {
+        test: /\.(s*)css$/,
+        use: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   },
@@ -15,15 +19,13 @@ module.exports = {
     extensions: ["*", ".js", ".jsx"]
   },
   output: {
-    path: __dirname + "/dist",
+    path: __dirname + "/public",
     publicPath: "/",
     filename: "bundle.js"
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
+  plugins: [new webpack.HotModuleReplacementPlugin()],
   devServer: {
-    contentBase: "./dist",
+    contentBase: "./public",
     hot: true
   }
 };
