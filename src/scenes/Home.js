@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-
+import Masonry from "react-masonry-component";
 import { Row, Col } from "react-bootstrap";
 
 import HomeItem from "../components/HomeItem";
 
-const API_URL = "data/collectionsDefault.json"; 
+const API_URL = "data/collectionsDefault.json";
 /*
 const BASE_URL = "https://api.unsplash.com"
 const LIST_FEATURED_COLLECTIONS = "/collections/featured"
@@ -28,7 +28,7 @@ class Home extends Component {
 
   extractCollectionIdAndTitle = data => {
     return new Promise((resolve, reject) => {
-      resolve(data.map(item => ({id: item.id, title: item.title})));
+      resolve(data.map(item => ({ id: item.id, title: item.title })));
       reject(console.log("There is a problem with extracting IDs from data"));
     });
   };
@@ -41,18 +41,18 @@ class Home extends Component {
   }
 
   render() {
+    const homeItems = this.state.collectionsInfo.map(col => (
+      <Col xs={12} sm={6} md={4} key={col.id}>
+        <Link to={`/collections/${col.id}`}>
+          <HomeItem colId={col.id} colTitle={col.title} />
+        </Link>
+      </Col>
+    ));
     return (
-      <Row>
-        <Col xs={12}>
-          <h2>Unsplashy Splash</h2>
-        </Col>
-        {this.state.collectionsInfo.map(col => (
-          <Link to={`/collections/${col.id}`} key={col.id}>
-            <HomeItem key={col.id} colId={col.id} colTitle={col.title} />
-          </Link>
-        ))}
-        
-      </Row>
+      <div>
+        <h2>Unsplashy Splash</h2>
+        <Masonry>{homeItems}</Masonry>
+      </div>
     );
   }
 }

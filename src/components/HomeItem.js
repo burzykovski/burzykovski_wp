@@ -19,12 +19,13 @@ class HomeItem extends Component {
 
     this.state = {
       photos: []
-    }
+    };
   }
-  
 
   getNewestPhotos = data => {
-    data = data.sort((a,b) => b.created_at.localeCompare(a.created_at)).slice(0,10);
+    data = data
+      .sort((a, b) => b.created_at.localeCompare(a.created_at))
+      .slice(0, 10);
 
     return new Promise((resolve, reject) => {
       resolve(data);
@@ -42,18 +43,22 @@ class HomeItem extends Component {
 
   render() {
     return (
-      <Col xs={12} sm={6} md={4}>
-        <Panel className="gallery-panel">
-          <Panel.Heading>
-            <h4>{this.props.colTitle}</h4>
-          </Panel.Heading>
-          <Panel.Body className="panel-collection">
-            {this.state.photos.map(img => (
-              <Image className="panel-collection-image" key={img.id} src={img.urls.thumb} alt={img.description} responsive />
-            ))}
-          </Panel.Body>
-        </Panel>
-      </Col>
+      <Panel className="gallery-panel">
+        <Panel.Heading>
+          <h4>{this.props.colTitle}</h4>
+        </Panel.Heading>
+        <Panel.Body className="panel-collection">
+          {this.state.photos.map(img => (
+            <Image
+              className="panel-collection-image"
+              key={img.id}
+              src={img.urls.thumb}
+              alt={img.description}
+              responsive
+            />
+          ))}
+        </Panel.Body>
+      </Panel>
     );
   }
 }

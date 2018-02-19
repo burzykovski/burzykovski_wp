@@ -44,14 +44,14 @@ class Collection extends Component {
   onScroll = () => {
     if (
       window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
-      this.state.photos.length
+      this.state.photos.length &&
+      !this.state.isLoading
     ) {
-      this.onPaginatedSearch();
+      this.onPaginatedFetch();
     }
   };
 
-  onPaginatedSearch = (e) =>
-    this.fetchPhotos(this.collectionID, this.state.page);
+  onPaginatedFetch = e => this.fetchPhotos(this.collectionID, this.state.page);
 
   render() {
     const masonryImages = this.state.photos.map(img => (
