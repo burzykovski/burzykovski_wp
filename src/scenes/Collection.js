@@ -4,7 +4,7 @@ class Collection extends Component {
   render() {
     return (
       <div>
-        asdf
+        <p>id to: {this.props.match.url}</p>
       </div>
     )
   }

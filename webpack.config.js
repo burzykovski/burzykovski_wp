@@ -28,8 +28,6 @@ module.exports = {
     contentBase: "./public",
     hot: true,
     port: 3000,
-    historyApiFallback: {
-      index: "build/index.html"
-    }
+    historyApiFallback: true
   }
 };
