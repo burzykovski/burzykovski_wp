@@ -34,21 +34,24 @@ class Collection extends Component {
 
   componentDidMount() {
     this.fetchPhotos(this.collectionID, this.state.page);
-    // window.addEventListener("scroll", this.onScroll, false);
+    window.addEventListener("scroll", this.onScroll, false);
   }
 
-  // componentWillUnmount() {
-  //   window.removeEventListener("scroll", this.onScroll, false);
-  // }
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.onScroll, false);
+  }
 
-  // onScroll = () => {
-  //   if (
-  //     window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
-  //     this.props.list.length
-  //   ) {
-  //     this.props.onPaginatedSearch();
-  //   }
-  // };
+  onScroll = () => {
+    if (
+      window.innerHeight + window.scrollY >= document.body.offsetHeight - 500 &&
+      this.state.photos.length
+    ) {
+      this.onPaginatedSearch();
+    }
+  };
+
+  onPaginatedSearch = (e) =>
+    this.fetchPhotos(this.collectionID, this.state.page);
 
   render() {
     const masonryImages = this.state.photos.map(img => (
