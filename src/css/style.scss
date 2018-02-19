@@ -15,9 +15,13 @@ body {
   box-sizing: border-box;
 }
 
+.gallery-panel {
+  clear: both;
+}
+
 .panel-collection {
+  background-color: #e7e7e7;
   line-height: 0;
-   
   -webkit-column-count: 3;
   -webkit-column-gap:   0px;
   -moz-column-count:    3;
@@ -25,6 +29,7 @@ body {
   column-count:         3;
   column-gap:           0px; 
 }
+
 
 .panel-collection-image {
   margin: 2px;

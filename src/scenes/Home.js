@@ -22,13 +22,13 @@ class Home extends Component {
     super(props);
 
     this.state = {
-      collectionsIds: []
+      collectionsInfo: []
     };
   }
 
-  extractCollectionId = data => {
+  extractCollectionIdAndTitle = data => {
     return new Promise((resolve, reject) => {
-      resolve(data.map(item => item.id));
+      resolve(data.map(item => ({id: item.id, title: item.title})));
       reject(console.log("There is a problem with extracting IDs from data"));
     });
   };
@@ -36,8 +36,8 @@ class Home extends Component {
   componentDidMount() {
     fetch(API_URL)
       .then(response => response.json())
-      .then(data => this.extractCollectionId(data))
-      .then(data => this.setState({ collectionsIds: data }));
+      .then(data => this.extractCollectionIdAndTitle(data))
+      .then(data => this.setState({ collectionsInfo: data }));
   }
 
   render() {
@@ -46,12 +46,12 @@ class Home extends Component {
         <Col xs={12}>
           <h2>Unsplashy Splash</h2>
         </Col>
-
-        {this.state.collectionsIds.map(colId => (
-          <Link to={`/collections/${colId}`} key={colId}>
-            <HomeItem key={colId} colId={colId} />
+        {this.state.collectionsInfo.map(col => (
+          <Link to={`/collections/${col.id}`} key={col.id}>
+            <HomeItem key={col.id} colId={col.id} colTitle={col.title} />
           </Link>
         ))}
+        
       </Row>
     );
   }
