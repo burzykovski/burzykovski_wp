@@ -1,16 +1,33 @@
-// *,
-// *::before,
-// *::after {
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: inherit;
-// }
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
 
-// html {
-//   // This defines what 1rem is
-//   font-size: 62.5%;
-// }
+html {
+  // This defines what 1rem is
+  font-size: 62.5%;
+}
 
-// body {
-//   box-sizing: border-box;
-// }
+body {
+  box-sizing: border-box;
+}
+
+.panel-collection {
+  line-height: 0;
+   
+  -webkit-column-count: 3;
+  -webkit-column-gap:   0px;
+  -moz-column-count:    3;
+  -moz-column-gap:      0px;
+  column-count:         3;
+  column-gap:           0px; 
+}
+
+.panel-collection-image {
+  margin: 2px;
+  width: 100% !important;
+  height: auto !important;
+}

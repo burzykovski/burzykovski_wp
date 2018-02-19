@@ -1,11 +1,63 @@
 import React, { Component } from "react";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import { Row, Col } from "react-bootstrap";
 
 import HomeItem from "../components/HomeItem";
 
+const API_URL = "data/collectionsDefault.json"; 
+/*
+const BASE_URL = "https://api.unsplash.com"
+const LIST_FEATURED_COLLECTIONS = "/collections/featured"
+const AUTHORIZATION = "?client_id="
+const MY_APP_ID = "9e7a4bba4e2738e9e1aa9c34c4aa9433a10d037cd5b56a97c67a0e159a65b3fd"
 
+const API_URL = BASE_URL+LIST_FEATURED_COLLECTIONS+AUTHORIZATION+MY_APP_ID;
+API_URL: https://api.unsplash.com/collections/featured?client_id=9e7a4bba4e2738e9e1aa9c34c4aa9433a10d037cd5b56a97c67a0e159a65b3fd
+
+*/
+
+class Home extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      collectionsIds: []
+    };
+  }
+
+  extractCollectionId = data => {
+    return new Promise((resolve, reject) => {
+      resolve(data.map(item => item.id));
+      reject(console.log("There is a problem with extracting IDs from data"));
+    });
+  };
+
+  componentDidMount() {
+    fetch(API_URL)
+      .then(response => response.json())
+      .then(data => this.extractCollectionId(data))
+      .then(data => this.setState({ collectionsIds: data }));
+  }
+
+  render() {
+    return (
+      <Row>
+        <Col xs={12}>
+          <h2>Unsplashy Splash</h2>
+        </Col>
+
+        {this.state.collectionsIds.map(colId => (
+          <Link to={`/collections/${colId}`} key={colId}>
+            <HomeItem key={colId} colId={colId} />
+          </Link>
+        ))}
+      </Row>
+    );
+  }
+}
+
+export default Home;
 
 // import Unsplash from "unsplash-js";
 
@@ -16,36 +68,11 @@ import HomeItem from "../components/HomeItem";
 //   callbackUrl: "urn:ietf:wg:oauth:2.0:oob"
 // });
 
-class Home extends Component {
-  constructor(props) {
-    super(props);
-
-  }
-
-  // componentDidMount() {
-  //   unsplash.collections
-  //     .listFeaturedCollections(1, 10)
-  //     .then(rsp => rsp.json())
-  //     .then(data => {
-  //       this.setState({ ...this.state, collections: data });
-  //     });
-  // }
-
-  render() {
-    return (
-      <Row>
-        <Col xs={12}>
-          <h2>Unsplashy Splash</h2>
-        </Col>
-
-        {this.props.collections.map(item => (
-          <Link to={`/col/${item.id}`} key={item.id}>
-            <HomeItem key={item.id} id={item.id} />
-          </Link>
-        ))}
-      </Row>
-    );
-  }
-}
-
-export default Home;
+// componentDidMount() {
+//   unsplash.collections
+//     .listFeaturedCollections(1, 10)
+//     .then(rsp => rsp.json())
+//     .then(data => {
+//       this.setState({ ...this.state, collections: data });
+//     });
+// }

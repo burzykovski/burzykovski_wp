@@ -50,7 +50,7 @@
         "https://images.unsplash.com/photo-1518332256123-34614512c4dd?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&s=8f27d708a9e1ae321b7a225b9491fefa",
       "regular":
         "https://images.unsplash.com/photo-1518332256123-34614512c4dd?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&s=e8b2a91284c1f52b607617697c9c9940",
-      "small":
+        "small":
         "https://images.unsplash.com/photo-1518332256123-34614512c4dd?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&s=d334c1d292afe396788761041477af71",
       "thumb":
         "https://images.unsplash.com/photo-1518332256123-34614512c4dd?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&s=a40101b2886a24b6543463028cc6c272"
