@@ -1,6 +1,9 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Col, ButtonToolbar, Button, Image } from "react-bootstrap";
 import Masonry from "react-masonry-component";
+
+import CollectionItem from "../components/CollectionItem";
 
 const applyUpdateResult = result => prevState => ({
   photos: [...prevState.photos, ...result],
@@ -82,13 +85,13 @@ class Collection extends Component {
   render() {
     const masonryImages = this.state.photos.map(img => (
       <Col xs={12} sm={6} md={4} key={img.id}>
-        <Image
-          className="masonry-image"
-          key={img.id}
-          src={img.urls.small}
-          alt={img.description}
-          responsive
-        />
+        <Link to={`/photos/${img.id}`}>
+          <CollectionItem
+            imgId={img.id}
+            imgSrc={img.urls.small}
+            imgAlt={img.description}
+          />
+        </Link>
       </Col>
     ));
 
