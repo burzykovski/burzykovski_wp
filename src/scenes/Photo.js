@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Col, Row, Button, Image } from "react-bootstrap";
+import FbLikeButton from "../components/FbLikeButton";
 
 class Photo extends Component {
   constructor(props) {
@@ -72,6 +73,11 @@ class Photo extends Component {
               <li>Username: {user.username}</li>
               <li>Name: {user.name}</li>
             </ul>
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={4} xsOffset={4}>
+            <FbLikeButton photoUrl={urls.regular} />
           </Col>
         </Row>
       </div>
