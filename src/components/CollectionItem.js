@@ -18,7 +18,7 @@ class CollectionItem extends Component {
 
   extractPhotoInfo = data => {
     return new Promise((resolve) => {
-      resolve({ likes: data.likes, downloads: data.downloads, country: (data.location === undefined ? "no info" : data.location.country) });
+      resolve({ likes: data.likes, downloads: data.downloads, country: data.location && data.location.country });
     });
   };
 
@@ -36,7 +36,7 @@ class CollectionItem extends Component {
       <Popover id="popover-trigger-hover-focus" title="More info">
         <Label>Likes:</Label> {likes}<br/>
         <Label>Downloads:</Label> {downloads}<br/>
-        <Label>Country:</Label> {country}
+        <Label>Country:</Label> {country === undefined ? "N/A" : country}
       </Popover>
     );
     return (
