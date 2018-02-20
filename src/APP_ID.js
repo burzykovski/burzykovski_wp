@@ -1,4 +1,4 @@
 const APP_ID =
-  "1d496e6ff5d7c6d1f894c3630c2b185f4eca7c8fb90d13ec4e545d48150c7543";
+  "8521389f99302b49ce7591813e3427e343a6fc4541e3f33c42dbf0e8bf1a02fa";
 
 export { APP_ID };
