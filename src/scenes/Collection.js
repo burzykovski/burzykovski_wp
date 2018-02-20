@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Col, Row, Image } from "react-bootstrap";
+import { Col, ButtonToolbar, Button, Image } from "react-bootstrap";
 import Masonry from "react-masonry-component";
 
 const applyUpdateResult = result => prevState => ({
@@ -25,14 +25,6 @@ class Collection extends Component {
   actualUrl = this.props.match.url;
   collectionID = this.actualUrl.slice(this.actualUrl.lastIndexOf("/") + 1);
 
-  fetchPhotos = (colId, page) => {
-    this.setState({ isLoading: true });
-    fetch(getUnsplashUrl(colId, page))
-      .then(response => response.json())
-      .then(result => this.stopFetchingWhenResultEmpty(result))
-      .then(result => this.setState(applyUpdateResult(result)));
-  };
-
   componentDidMount() {
     this.fetchPhotos(this.collectionID, this.state.page);
     window.addEventListener("scroll", this.onScroll, false);
@@ -41,6 +33,14 @@ class Collection extends Component {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.onScroll, false);
   }
+
+  fetchPhotos = (colId, page) => {
+    this.setState({ isLoading: true });
+    fetch(getUnsplashUrl(colId, page))
+      .then(response => response.json())
+      .then(result => this.stopFetchingWhenResultEmpty(result))
+      .then(result => this.setState(applyUpdateResult(result)));
+  };
 
   stopFetchingWhenResultEmpty(result) {
     return new Promise(resolve => {
@@ -67,6 +67,18 @@ class Collection extends Component {
 
   onPaginatedFetch = e => this.fetchPhotos(this.collectionID, this.state.page);
 
+  sortByNewest = () => {
+    const sortedPhotos = this.state.photos.sort((a, b) =>
+      b.created_at.localeCompare(a.created_at)
+    );
+    this.setState({ photos: sortedPhotos });
+  };
+
+  sortByPopular = () => {
+    const sortedPhotos = this.state.photos.sort((a, b) => b.likes - a.likes);
+    this.setState({ photos: sortedPhotos });
+  };
+
   render() {
     const masonryImages = this.state.photos.map(img => (
       <Col xs={12} sm={6} md={4} key={img.id}>
@@ -83,6 +95,11 @@ class Collection extends Component {
     return (
       <div>
         <h2>Collection</h2>
+        <ButtonToolbar>
+          <Button onClick={this.sortByNewest}>Newest</Button>
+          <Button onClick={this.sortByPopular}>Popular</Button>
+        </ButtonToolbar>
+
         <Masonry>{masonryImages}</Masonry>
         <div>{this.state.isLoading && <span>Loading...</span>}</div>
       </div>
