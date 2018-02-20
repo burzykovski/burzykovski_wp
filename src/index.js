@@ -5,8 +5,6 @@ import "./css/style.scss";
 
 import App from "./App";
 
-const title = "WP RECRUITMENT TASK";
-
 ReactDOM.render(<App/>, document.getElementById("root"));
 
-// module.hot.accept();
+module.hot.accept();

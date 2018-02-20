@@ -7,7 +7,6 @@
 }
 
 html {
-  // This defines what 1rem is
   font-size: 62.5%;
 }
 
@@ -15,27 +14,33 @@ body {
   box-sizing: border-box;
 }
 
-.panel-collection-heading {
-  background-image: linear-gradient(
-    to bottom,
-    #a7a7a7a7 0,
-    #e7e7e7 100%
-  ) !important;
-}
+.panel-collection {
+  height: 300px;
+  overflow-y: scroll;
 
-.panel-collection-body {
-  background-color: #e7e7e7;
-}
+  &-heading {
+    background-image: linear-gradient(
+      to bottom,
+      #a7a7a7a7 0,
+      #e7e7e7 100%
+    ) !important;
+  }
 
-.panel-collection-image {
-  padding: 2px;
-  width: 33%;
+  &-body {
+    background-color: #e7e7e7;
+  }
+
+  &-image {
+    padding: 2px;
+    width: 33%;
+  }
 }
 
 .masonry-image {
   padding: 15px 0px;
   margin: 0 auto;
 }
+
 .photo-info-list {
   list-style-type: none;
 }

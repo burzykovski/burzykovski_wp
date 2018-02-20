@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Button, Image } from "react-bootstrap";
 import FbLikeButton from "../components/FbLikeButton";
+import { APP_ID } from "../APP_ID";
 
 class Photo extends Component {
   constructor(props) {
@@ -16,7 +17,7 @@ class Photo extends Component {
 
   API_URL = `https://api.unsplash.com/photos/${
     this.photoID
-  }?client_id=fafad6301ff5a410f6ca6d3daf62727764635904751f065d2b60cf6c54fa06aa`;
+  }?client_id=${APP_ID}`;
 
   componentDidMount() {
     fetch(this.API_URL)

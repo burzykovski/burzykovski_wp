@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Col, ButtonToolbar, Button, Image } from "react-bootstrap";
 import Masonry from "react-masonry-component";
+import { APP_ID } from "../APP_ID";
 
 import CollectionItem from "../components/CollectionItem";
 
@@ -12,7 +13,7 @@ const applyUpdateResult = result => prevState => ({
 });
 
 const getUnsplashUrl = (colId, page) =>
-  `https://api.unsplash.com/collections/${colId}/photos?page=${page}&per_page=30&client_id=9e7a4bba4e2738e9e1aa9c34c4aa9433a10d037cd5b56a97c67a0e159a65b3fd`;
+  `https://api.unsplash.com/collections/${colId}/photos?page=${page}&per_page=30&client_id=${APP_ID}`;
 
 class Collection extends Component {
   constructor(props) {
