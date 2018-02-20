@@ -29,6 +29,7 @@ class Collection extends Component {
     this.setState({ isLoading: true });
     fetch(getUnsplashUrl(colId, page))
       .then(response => response.json())
+      .then(result => this.stopFetchingWhenResultEmpty(result))
       .then(result => this.setState(applyUpdateResult(result)));
   };
 
@@ -39,6 +40,19 @@ class Collection extends Component {
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.onScroll, false);
+  }
+
+  stopFetchingWhenResultEmpty(result) {
+    return new Promise(resolve => {
+      resolve(
+        result.length === 0 ? this.removeScrollListenerInFetch(result) : result
+      );
+    });
+  }
+
+  removeScrollListenerInFetch(result) {
+    window.removeEventListener("scroll", this.onScroll, false);
+    return result;
   }
 
   onScroll = () => {

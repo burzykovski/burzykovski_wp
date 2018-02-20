@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Panel, Col, Row, Image } from "react-bootstrap";
+import { Panel, Image } from "react-bootstrap";
+import Masonry from "react-masonry-component";
 
 /*
 const BASE_URL = "https://api.unsplash.com"
@@ -27,9 +28,8 @@ class HomeItem extends Component {
       .sort((a, b) => b.created_at.localeCompare(a.created_at))
       .slice(0, 10);
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       resolve(data);
-      reject(console.log("There is a problem with extracting IDs from data"));
     });
   };
 
@@ -43,12 +43,12 @@ class HomeItem extends Component {
 
   render() {
     return (
-      <Panel className="gallery-panel">
-        <Panel.Heading>
+      <Panel>
+        <Panel.Heading className="panel-collection-heading">
           <h4>{this.props.colTitle}</h4>
         </Panel.Heading>
-        <Panel.Body className="panel-collection">
-          {this.state.photos.map(img => (
+        <Panel.Body className="panel-collection-body">
+          <Masonry>{this.state.photos.map(img => (
             <Image
               className="panel-collection-image"
               key={img.id}
@@ -56,7 +56,7 @@ class HomeItem extends Component {
               alt={img.description}
               responsive
             />
-          ))}
+          ))}</Masonry>
         </Panel.Body>
       </Panel>
     );
