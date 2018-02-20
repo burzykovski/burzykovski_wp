@@ -15,16 +15,17 @@ body {
   box-sizing: border-box;
 }
 
-
 .panel-collection-heading {
-  background-image: linear-gradient(to bottom,#a7a7a7a7 0,#e7e7e7 100%) !important;
+  background-image: linear-gradient(
+    to bottom,
+    #a7a7a7a7 0,
+    #e7e7e7 100%
+  ) !important;
 }
 
 .panel-collection-body {
   background-color: #e7e7e7;
-  
 }
-
 
 .panel-collection-image {
   padding: 2px;
@@ -34,4 +35,14 @@ body {
 .masonry-image {
   padding: 15px 0px;
   margin: 0 auto;
+}
+
+.masonry-image-info {
+  color: red;
+  //position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 }
