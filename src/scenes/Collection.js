@@ -71,14 +71,16 @@ class Collection extends Component {
   onPaginatedFetch = e => this.fetchPhotos(this.collectionID, this.state.page);
 
   sortByNewest = () => {
-    const sortedPhotos = this.state.photos.sort((a, b) =>
+    let sortedPhotos = [...this.state.photos];
+    sortedPhotos = this.state.photos.sort((a, b) =>
       b.created_at.localeCompare(a.created_at)
     );
     this.setState({ photos: sortedPhotos });
   };
 
   sortByPopular = () => {
-    const sortedPhotos = this.state.photos.sort((a, b) => b.likes - a.likes);
+    let sortedPhotos = [...this.state.photos];
+    sortedPhotos = this.state.photos.sort((a, b) => b.likes - a.likes);
     this.setState({ photos: sortedPhotos });
   };
 
