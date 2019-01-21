@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Row, Button, Image } from "react-bootstrap";
+import { Col, Row, Image } from "react-bootstrap";
 import FbLikeButton from "../components/FbLikeButton";
 import { APP_ID } from "../APP_ID";
 
